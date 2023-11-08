@@ -48,6 +48,7 @@ html {
   display: flex;
   flex-direction: column;
   gap: 30px;
+  position: relative;
 }
 
 .content__video-card {
@@ -70,6 +71,7 @@ html {
   width: 711px;
   height: 386px;
   margin-bottom: 16px;
+  position: relative;
 }
 
 .result__video {
