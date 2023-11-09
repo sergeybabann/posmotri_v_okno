@@ -64,6 +64,11 @@ html {
   color: #ffffff;
   /* text-align: left; */
 }
+.search-form__checkbox-list {
+  /* обертка для чекбоксов */
+  display: flex;
+  gap: 15px;
+}
 
 .search-form__textfield {
   /* input */
@@ -78,10 +83,12 @@ html {
   border-top: 1px solid #ffffff;
   border-bottom: 1px solid #ffffff;
   appearance: none;
+  cursor: pointer;
 }
 
 .search-form__label {
   /* класс встречается в нескольких местах */
+  width: fit-content;
 }
 
 /* ---------- Секция content__details ----------*/
@@ -185,12 +192,16 @@ html {
   line-height: 21.6px;
   background-color: transparent;
   color: #ffffff;
+  height: 34px;
   /* text-align: center; */
 }
 .search-form__submit-button {
+  width: 194px;
+  align-self: end;
 }
 
 .more-button {
+  width: 399px;
 }
 
 /*----- Селекторы -----*/
