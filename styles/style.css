@@ -52,8 +52,8 @@ html {
   align-items: start;
 }
 
-.search-form__fieldset {
-}
+/* .search-form__fieldset {
+} */
 
 .search-form__fieldset-title {
   /* Заголовок h2 */
@@ -70,6 +70,45 @@ html {
   gap: 15px;
 }
 
+.search-form__label {
+  /* класс встречается в нескольких местах */
+  width: fit-content;
+}
+
+.search-form__label:hover {
+  /* подчеркивание текста при наведениии */
+  text-decoration: underline;
+  color: #ffffff;
+}
+
+.search-form__pseudo-checkbox {
+  /* span класс. кастомная стилизация. В проекте предлагается реализовать псевдоэлемент для этого
+  класса (видимо речь идет о :has() */
+  position: relative;
+  display: inline-block;
+  width: 19px;
+  height: 19px;
+  vertical-align: sub;
+  border: 1px solid #ffffff;
+}
+
+.search-form__checkbox:checked + .search-form__pseudo-checkbox::before {
+  content: '';
+  display: block;
+  margin-left: 1px;
+  margin-top: 1px;
+  width: 15px;
+  height: 15px;
+  background-color: #fff;
+}
+
+.search-form__checkbox:active + .search-form__pseudo-checkbox::before {
+  content: '';
+  width: 15px;
+  height: 15px;
+  background-color: #fff;
+}
+
 .search-form__textfield {
   /* input */
   width: 240px;
@@ -84,11 +123,6 @@ html {
   border-bottom: 1px solid #ffffff;
   appearance: none;
   cursor: pointer;
-}
-
-.search-form__label {
-  /* класс встречается в нескольких местах */
-  width: fit-content;
 }
 
 /* ---------- Секция content__details ----------*/
