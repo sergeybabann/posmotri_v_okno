@@ -8,6 +8,27 @@ html {
   block-size: 100%;
 }
 
+/*----- Селекторы -----*/
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+li,
+blockquote,
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
 .page {
   inline-size: 1200px;
   block-size: 100%;
@@ -25,7 +46,7 @@ html {
   /* margin: auto; */
   display: flex;
   align-items: end;
-  width: 1140px; /* width: 711px; */
+  inline-size: 1140px; /* width: 1140px; */
   column-gap: 30px;
 }
 
@@ -35,7 +56,7 @@ html {
   /* Контейнер для видео */
   width: 711px;
   height: 386px;
-  margin-bottom: 16px;
+  margin-block-end: 16px;
   position: relative;
 }
 
@@ -43,6 +64,7 @@ html {
   /* Видео */
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 .search-form {
@@ -52,8 +74,9 @@ html {
   align-items: start;
 }
 
-/* .search-form__fieldset {
-} */
+.search-form__fieldset {
+  border: none;
+}
 
 .search-form__fieldset-title {
   /* Заголовок h2 */
@@ -64,6 +87,39 @@ html {
   color: #ffffff;
   /* text-align: left; */
 }
+
+.search-form__label:has(.search-form__textfield:focus-visible) {
+  /* текстовое поле с псевдоклассом :has() */
+  border: 2px solid #ffffff;
+}
+
+.search-form__label:has(input:focus) {
+  /* текстовое поле с псевдоклассом :has() */
+  outline: none;
+}
+
+.search-form__label:has(input:hover) {
+  /* текстовое поле с псевдоклассом :has() */
+  text-decoration: none;
+}
+
+.search-form__textfield {
+  /* input */
+  /* outline должен быть сброшен только в состоянии :focus */
+  width: 225px;
+  color: #ffffffb2;
+  font-family: 'Fira Sans Condensed', 'Arial', 'Helvetica', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.6px;
+  background: none;
+  border: none;
+  border-top: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+  appearance: none;
+  cursor: pointer;
+}
+
 .search-form__checkbox-list {
   /* обертка для чекбоксов */
   display: flex;
@@ -73,22 +129,26 @@ html {
 .search-form__label {
   /* класс встречается в нескольких местах */
   width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
 }
 
 .search-form__label:hover {
   /* подчеркивание текста при наведениии */
   text-decoration: underline;
   color: #ffffff;
-  cursor: pointer;
 }
 
 .search-form__pseudo-checkbox {
-  /* span класс, кастомная стилизация.*/
+  /* span класс, кастомная стилизация.
+  удалил vertical-align: sub; и поставил align-items: center; */
   position: relative;
-  display: inline-block;
+  display: flex;
   width: 19px;
   height: 19px;
-  vertical-align: sub;
+  align-items: center;
   border: 1px solid #ffffff;
 }
 
@@ -109,22 +169,6 @@ html {
   background-color: #fff;
 }
 
-.search-form__textfield {
-  /* input */
-  width: 240px;
-  font-family: 'Fira Sans Condensed' 'Arial', 'Helvetica', sans-serif;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 21.6px;
-  background: none;
-  outline: none;
-  border: none;
-  border-top: 1px solid #ffffff;
-  border-bottom: 1px solid #ffffff;
-  appearance: none;
-  cursor: pointer;
-}
-
 /* ---------- Секция content__details ----------*/
 
 .content__details {
@@ -134,7 +178,7 @@ html {
   height: 100%;
   width: 100%;
   flex-grow: 1;
-  row-gap: 26px;
+  gap: 26px;
 }
 
 .title {
@@ -153,63 +197,84 @@ html {
   color: #545050;
 }
 
-.content__video-card-title {
-  font-family: 'Oswald', 'Arial', 'Helvetica', sans-serif;
-  font-size: 30px;
-  font-weight: 700;
-  line-height: 30px;
-  color: #ffffff;
-  /* text-align: left; */
-}
-
-.content__video-card-description {
-  font-family: 'Fira Sans Condensed', 'Arial', 'Helvetica', sans-serif;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 16.2px;
-  /* text-align: left; */
-}
-
 .content__list {
-  /* Список */
+  /* Список карточек */
   height: 298px;
-  overflow-x: hidden;
+  overflow-x: auto; /* убрал в overflow-x: hidden; и поставил значение auto вместо hidden  */
   display: flex;
   flex-direction: column;
   gap: 30px;
   position: relative;
 }
 
+.content__card-link_current {
+  /* модификатор */
+  background-color: #545050;
+}
+
 .content__card-link {
-  /* текст-ссылка в карточках */
+  /* ссылка в карточке */
   color: #ffffff;
   text-decoration: none;
   display: block;
   margin: 2px;
 }
 
-.content__card-link_current:active {
-  /* состояние :active у карточки */
-  background-color: #545050;
+.content__card-link:hover {
+  text-decoration: underline;
 }
 
-.button:focus-visible {
+.content__card-link:active {
+  /* ссылка в карточке */
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+  margin: 2px;
+}
+
+.content__card-link:focus-visible {
+  /* ссылка в карточке */
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
   border: 2px solid #ffffff;
-  outline: none;
-  /* text-align: center; */
 }
 
-.button:focus {
+.content__card-link:focus {
   outline: none;
 }
 
 .content__video-card {
+  /* карточка. тег article */
   display: flex;
   align-items: start;
 }
 
 .content__video-card-description-container {
+  /* контейнер описания карточки */
   flex-grow: 1;
+}
+
+.content__video-card-title {
+  /* заголовок в карточке */
+  font-family: 'Oswald', 'Arial', 'Helvetica', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 30px;
+  color: #ffffff;
+
+  /* text-align: left; */
+}
+
+.content__video-card-description {
+  /* описание в карточке */
+  font-family: 'Fira Sans Condensed', 'Arial', 'Helvetica', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 16.2px;
+  color: #ffffff;
+
+  /* text-align: left; */
 }
 
 .content__video-card-thumbnail {
@@ -244,51 +309,22 @@ html {
   background-color: transparent;
   color: #ffffff;
   height: 34px;
-  /* text-align: center; */
 }
 
 .button:hover {
-  border: solid #ffffff 1px;
-  cursor: pointer;
-  font-family: 'Fira Sans Condensed', 'Arial', 'Helvetica', sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 21.6px;
-  background-color: transparent;
-  color: #ffffff;
-  height: 34px;
-  /* text-align: center; */
+  text-decoration: underline;
 }
 
 .button:active {
-  border: solid #ffffff 1px;
-  cursor: pointer;
-  font-family: 'Fira Sans Condensed', 'Arial', 'Helvetica', sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 21.6px;
-  background-color: transparent;
-  color: #ffffff;
-  height: 34px;
   background-color: #545050;
-  /* text-align: center; */
-}
-
-.button:focus-visible {
-  cursor: pointer;
-  font-family: 'Fira Sans Condensed', 'Arial', 'Helvetica', sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 21.6px;
-  background-color: transparent;
-  color: #ffffff;
-  height: 34px;
-  border: 2px solid #ffffff;
-  outline: none;
-  /* text-align: center; */
 }
 
 .button:focus {
+  outline: none;
+}
+
+.button:focus-visible {
+  border: 2px solid #ffffff;
   outline: none;
 }
 
@@ -299,25 +335,4 @@ html {
 
 .more-button {
   width: 399px;
-}
-
-/*----- Селекторы -----*/
-h1,
-h2,
-h3,
-h4,
-p,
-ul,
-ol,
-li,
-blockquote,
-fieldset {
-  margin: 0;
-  padding: 0;
-  border: none;
-}
-
-ul,
-ol {
-  list-style: none;
 }
