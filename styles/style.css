@@ -100,7 +100,7 @@ ol {
 
 .search-form__label:has(input:hover) {
   /* текстовое поле с псевдоклассом :has() */
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .search-form__textfield {
